@@ -7,7 +7,7 @@ HEADER
       <p>
          <router-link to="/principal/Hijo">Realizar Prestamo</router-link>
          <router-link to="/principal/devolucion">Devolucion</router-link>
-         <router-link to="/user/foo/busqueda">Busqueda de Libro</router-link>
+         <router-link to="/principal/busqueda">Busqueda de Libro</router-link>
 <a href="#" v-on:click="logout">Salir</a>
        </p>
     </div>
