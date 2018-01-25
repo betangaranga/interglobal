@@ -1,17 +1,22 @@
 <template lang="html">
-  <input type="text" v-model="libro"name="" value="">
+  <div class="panel-body">
+    
+  </div>
+</div>
+
 </template>
 
 <script>
 export default {
-  name:'buscar',
-  data(){
+  name: 'buscar',
+  data() {
     return {
-      libro:''
+      titulo: ''
     }
   }
 }
 </script>
 
 <style lang="css">
+
 </style>

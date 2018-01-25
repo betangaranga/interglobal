@@ -3,6 +3,8 @@ import Router from 'vue-router'
 
 import Login from '@/components/Login'
 import Principal from '@/components/Principal'
+import Buscar from '@/components/Buscar'
+
 import firebase from 'firebase'
 import Hijo from '@/components/Hijo'
 
@@ -34,10 +36,16 @@ let router = new Router({
       meta: {
         requiresAuth: true
       },
-      children: [{
+      children: [
+        {
         path: "Hijo",
         component: Hijo
-      }]
+      },
+      {
+        path:"Buscar",
+        component:Buscar
+      }
+    ]
     }
   ]
 })
