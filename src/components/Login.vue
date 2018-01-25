@@ -70,6 +70,11 @@ export default {
   width: 100%;
   height: 100%;
   grid-column: 2/3;
+
+}
+.imagen img{
+position: relative;
+right: -50px;
 }
 
 .usuario {
