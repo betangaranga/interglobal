@@ -9,7 +9,7 @@
         name: 'Child1',
         data () {
             return {
-                msg: 'Welcome to Your Vue.js App'
+                msg: 'ESTO SE ACTUALIZA DEPENDIENDO DE LA OPCIONffffffffff'
             }
         }
     }

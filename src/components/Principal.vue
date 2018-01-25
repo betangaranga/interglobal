@@ -1,7 +1,7 @@
 <template lang="html">
   <div class="contenedor">
     <div class="header">
-HEADER
+BIBLIOTECA INTERGLOBAL
     </div>
     <div class="menu">
       <p>
@@ -16,7 +16,7 @@ HEADER
 
     </div>
     <div class="footer">
-FOOTER
+AQUI VA LA HORA
     </div>
   </div>
 </template>
