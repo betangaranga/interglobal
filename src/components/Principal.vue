@@ -4,12 +4,19 @@
 BIBLIOTECA INTERGLOBAL
     </div>
     <div class="menu">
-      <p>
+<ul>
+<li>
          <router-link to="/principal/Hijo">Realizar Prestamo</router-link>
-         <router-link to="/principal/devolucion">Devolucion</router-link>
-         <router-link to="/principal/Buscar">Busqueda de Libro</router-link>
+</li>
+         <li><router-link to="/principal/devolucion">Devolucion</router-link>
+</li>
+<li>         <router-link to="/principal/Buscar">Busqueda de Libro</router-link>
+</li>
+<li>
 <a href="#" v-on:click="logout">Salir</a>
-       </p>
+</li>
+</ul>
+
     </div>
     <div class="contenido">
       <router-view></router-view>
@@ -56,6 +63,21 @@ export default {
   grid-gap: 5px;
   grid-template-columns: repeat(12,1fr);
   grid-template-rows: repeat(12,1fr);
+
+
+}
+ul{
+  margin: auto;
+  text-decoration: none;
+  list-style: none;
+text-align: center;
+font-size: 20px;
+padding: 10px;
+}
+li{
+  margin-top:50px;
+text-decoration: none;
+font-style: normal;
 }
 
 .header {
