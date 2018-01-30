@@ -6,7 +6,7 @@ import Principal from '@/components/Principal'
 import Buscar from '@/components/Buscar'
 
 import firebase from 'firebase'
-import Hijo from '@/components/Hijo'
+import Prestamo from '@/components/Prestamo'
 
 Vue.use(Router)
 
@@ -25,11 +25,6 @@ let router = new Router({
       component: Login
     },
     {
-      path: '/principal/prestamo',
-      name: 'login',
-      component: Login
-    },
-    {
       path: '/principal',
       name: 'Principal',
       component: Principal,
@@ -38,8 +33,8 @@ let router = new Router({
       },
       children: [
         {
-        path: "Hijo",
-        component: Hijo
+        path: "Prestamo",
+        component: Prestamo
       },
       {
         path:"Buscar",

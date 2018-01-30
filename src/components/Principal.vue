@@ -6,7 +6,7 @@ BIBLIOTECA INTERGLOBAL
     <div class="menu">
 <ul>
 <li>
-         <router-link to="/principal/Hijo">Realizar Prestamo</router-link>
+         <router-link to="/principal/Prestamo">Realizar Prestamo</router-link>
 </li>
          <li><router-link to="/principal/devolucion">Devolucion</router-link>
 </li>
