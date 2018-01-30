@@ -6,7 +6,7 @@
 
 <script>
     export default {
-        name: 'Child1',
+        name: 'Prestamo',
         data () {
             return {
                 msg: 'ESTO SE ACTUALIZA DEPENDIENDO DE LA OPCIONffffffffff'
