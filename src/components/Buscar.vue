@@ -14,6 +14,11 @@
 </template>
 
 <script>
+import '../db'
+import firebase from 'firebase'
+var db=firebase.database();
+var ref=db.ref('libros')
+alert(ref)
 export default {
   name: 'buscar',
   data() {
