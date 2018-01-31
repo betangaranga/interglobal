@@ -1,17 +1,30 @@
 <template lang="html">
   <div class="container">
+    <div class="form-group">
+  <label for="usr">Buscar:</label>
+  <input type="text" v-model="buscar"class="form-control" id="usr" placeholder="Filtrar Libros por Tema">
+</div>
    <div class="panel-body">
-    <table class="table table-striped">
+    <table class="table">
       <thead>
         <tr>
           <th>Titulo</th>
           <th>Autor</th>
+          <th>Clasificacion</th>
+          <th>Prestar</th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="libro in libros">
+        <tr v-for="libro in libros_filtrados">
           <td>{{libro.TITULO}}</td>
           <td>{{libro.AUTOR}}</td>
+          <td>{{libro.CLASIFICACION}}</td>
+          <td>
+            <div class="radio_boton">
+              <label class="checkbox-inline"><input type="checkbox" value=""></label>
+            </div>
+          </td>
+
         </tr>
       </tbody>
     </table>
@@ -26,35 +39,63 @@
 <script>
 import '../db'
 import firebase from 'firebase'
-var db=firebase.database();
-var ref=db.ref('libros');
+var db = firebase.database();
+var ref = db.ref('libros');
 export default {
   firebase: {
-    libros:ref
+    libros: ref
   },
   name: 'buscar',
   data() {
     return {
-      titulo: ''
+      titulo: '',
+      buscar:""
     }
+  },
+  computed :{
+libros_filtrados(){
+  return this.libros.filter(libro => {
+    return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar)
+  }
+
+  )
+}
   }
 }
 </script>
 
 <style lang="css">
-tr {
-width: 100%;
-display: inline-table;
-table-layout: fixed;
+.radio_boton{
+position: relative;
+top: -15px;
 }
-th{
-  text-align: center;
+.container{
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(12,1fr);
+  grid-template-rows: repeat(12,1fr);
+justify-content: center;
+align-content: center;
+}
+.form-group{
+  margin: auto;
+
+grid-column: 1/-1;
+grid-row: 1/2;
+}
+.panel-body{
+  grid-column: 1/-1;
+  grid-row: 2/-1;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 table{
- height:200px;
+ height:100px;
  display: -moz-groupbox;
- color: black;
+ color: white;
  font-size: 10px;
 }
 tbody{
@@ -63,4 +104,14 @@ tbody{
   width: 80%;
   position: absolute;
 }
+tr {
+width: 100%;
+display: inline-table;
+table-layout: fixed;
+}
+th{
+  text-align: center;
+  color: white;
+}
+
 </style>
