@@ -1,8 +1,8 @@
 <template lang="html">
   <div class="container">
     <div class="form-group">
-  <label for="usr">Buscar:</label>
   <input type="text" v-model="buscar"class="form-control" id="usr" placeholder="Tema, Autor, Titulo">
+
 </div>
    <div class="panel-body">
     <table class="table">
@@ -21,7 +21,8 @@
           <td>{{libro.CLASIFICACION}}</td>
           <td>
             <div class="radio_boton">
-              <label class="checkbox-inline"><input type="checkbox" value=""></label>
+              <label class="checkbox-inline"><input type="radio" :value="libro.ID" v-model="checado" @change="agregar" checked=""></label>
+
             </div>
           </td>
 
@@ -29,7 +30,9 @@
       </tbody>
     </table>
   </div>
+
   </div>
+
   </div>
 
 </div>
@@ -41,6 +44,7 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref = db.ref('libros');
+var prestamo=[];
 export default {
   firebase: {
     libros: ref
@@ -50,6 +54,17 @@ export default {
     return {
       titulo: '',
       buscar:""
+    }
+  },
+  methods:{
+    agregar:function(){
+      if(prestamo.length()<3){
+      prestamo.push(this.checado);
+      console.log(prestamo);
+    }
+    else {
+      alert("Ya no puedes hacer mas prestamos!")
+    }
     }
   },
   computed :{
@@ -65,10 +80,7 @@ libros_filtrados(){
 </script>
 
 <style lang="css">
-.radio_boton{
-position: relative;
-top: -15px;
-}
+
 .container{
   width: 100%;
   height: 100%;
