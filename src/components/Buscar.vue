@@ -21,7 +21,7 @@
           <td>{{libro.CLASIFICACION}}</td>
           <td>
             <div class="radio_boton">
-              <label class="checkbox-inline"><input type="radio" :value="libro.ID" v-model="checado" @change="agregar" checked=""></label>
+              <label class="checkbox-inline"><input type="radio" :value="libro.ID" v-model="checado" @change="agregar();" checked=""></label>
 
             </div>
           </td>
@@ -44,7 +44,6 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref = db.ref('libros');
-var prestamo=[];
 export default {
   firebase: {
     libros: ref
@@ -58,13 +57,9 @@ export default {
   },
   methods:{
     agregar:function(){
-      if(prestamo.length()<3){
-      prestamo.push(this.checado);
-      console.log(prestamo);
-    }
-    else {
-      alert("Ya no puedes hacer mas prestamos!")
-    }
+
+      console.log(this.checado);
+
     }
   },
   computed :{
