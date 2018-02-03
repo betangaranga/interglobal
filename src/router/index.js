@@ -6,7 +6,6 @@ import Principal from '@/components/Principal'
 import Buscar from '@/components/Buscar'
 
 import firebase from 'firebase'
-import Prestamo from '@/components/Prestamo'
 
 Vue.use(Router)
 
@@ -32,10 +31,6 @@ let router = new Router({
         requiresAuth: true
       },
       children: [
-        {
-        path: "Prestamo",
-        component: Prestamo
-      },
       {
         path:"Buscar",
         component:Buscar

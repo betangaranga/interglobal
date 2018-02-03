@@ -3,14 +3,12 @@
 
     <div class="menu">
 <ul>
-<li>
-        <p><router-link to="/principal/Prestamo">Realizar Prestamo</router-link></p>
-</li>
          <li>
-           <p><router-link to="/principal/devolucion">Devolucion</router-link></p>
+           <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
+
 </li>
 <li>
-  <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
+  <p><router-link to="/principal/devolucion">Devolucion</router-link></p>
 </li>
 <li>
 <a href="#" v-on:click="logout">Salir</a>
@@ -78,14 +76,16 @@ export default {
 
 }
 ul{
-  margin: auto;
+  position: relative;
 text-align: center;
 font-size: 20px;
 padding: 10px;
 list-style: none;
+top: -60px;
 }
 li >   p,a{
   margin-top:50px;
+  margin-bottom: 50px;
 font-style: normal;
 color: white;
 text-decoration: none;
