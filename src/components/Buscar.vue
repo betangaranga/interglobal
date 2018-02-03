@@ -2,7 +2,7 @@
   <div class="container">
     <div class="form-group">
   <label for="usr">Buscar:</label>
-  <input type="text" v-model="buscar"class="form-control" id="usr" placeholder="Filtrar Libros por Tema">
+  <input type="text" v-model="buscar"class="form-control" id="usr" placeholder="Tema, Autor, Titulo">
 </div>
    <div class="panel-body">
     <table class="table">
@@ -55,7 +55,7 @@ export default {
   computed :{
 libros_filtrados(){
   return this.libros.filter(libro => {
-    return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar)
+    return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) ||  libro.TITULO.includes(this.buscar) ||  libro.AUTOR.includes(this.buscar)
   }
 
   )
