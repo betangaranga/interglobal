@@ -95,15 +95,13 @@ text-decoration: none;
 .menu {
   grid-column: 1 / 3;
   grid-row: 1/-1;
-  border-style: dotted;
+  border-style:
 
 }
 
 .contenido {
     grid-column: 3 / -1;
     grid-row: 1/-1;
-    border-style: dotted;
-
 
 }
 

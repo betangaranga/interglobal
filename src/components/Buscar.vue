@@ -29,13 +29,12 @@
         </tr>
       </tbody>
     </table>
-  </div>
+    <button type="button" class="btn btn-success">Prestar</button>
 
   </div>
-
   </div>
 
-</div>
+
 
 </template>
 
@@ -96,9 +95,12 @@ grid-row: 1/2;
   grid-row: 2/-1;
   margin-left: auto;
   margin-right: auto;
-
+border-style: dotted;
 }
-
+.btn {
+  position: relative;
+  top: 170px;
+}
 table{
  height:100px;
  display: -moz-groupbox;
