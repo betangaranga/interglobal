@@ -43,11 +43,15 @@
 import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
+
 var ref = db.ref('libros');
+var ref2 = db.ref('alumnos');
 export default {
   firebase: {
-    libros: ref
+    libros: ref,
+    alumnos: ref2
   },
+
   name: 'buscar',
   data() {
     return {

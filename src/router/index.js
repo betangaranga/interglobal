@@ -4,6 +4,7 @@ import Router from 'vue-router'
 import Login from '@/components/Login'
 import Principal from '@/components/Principal'
 import Buscar from '@/components/Buscar'
+import Devolucion from '@/components/Devolucion'
 
 import firebase from 'firebase'
 
@@ -34,7 +35,12 @@ let router = new Router({
       {
         path:"Buscar",
         component:Buscar
+      },
+      {
+        path: "Devolucion",
+        component: Devolucion
       }
+
     ]
     }
   ]
