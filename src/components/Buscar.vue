@@ -21,7 +21,7 @@
           <td>{{libro.CLASIFICACION}}</td>
           <td>
             <div class="radio_boton">
-              <label class="checkbox-inline"><input type="radio" :value="libro.ID" v-model="checado" @change="agregar();" checked=""></label>
+              <label class="checkbox-inline"><input type="radio" :value="libro.ID" v-model="checado" @change="agregar()" selected=""></label>
 
             </div>
           </td>
@@ -29,7 +29,7 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn btn-success">Prestar</button>
+    <button type="button" class="btn btn-success" v-if="checke">Prestar</button>
 
   </div>
   </div>
@@ -43,6 +43,7 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref = db.ref('libros');
+var radio = [];
 export default {
   firebase: {
     libros: ref
@@ -51,24 +52,34 @@ export default {
   data() {
     return {
       titulo: '',
-      buscar:""
+      buscar: "",
+      checado:"",
+      checke:false
     }
   },
-  methods:{
-    agregar:function(){
-
+  methods: {
+    agregar: function() {
+      if(radio.length<3){
+      radio.push(this.checado)
       console.log(this.checado);
+      this.checke=true;
+      alert(radio)
+    }
+    else{
+      alert("Estas pendejo")
+    }
 
     }
-  },
-  computed :{
-libros_filtrados(){
-  return this.libros.filter(libro => {
-    return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) ||  libro.TITULO.includes(this.buscar) ||  libro.AUTOR.includes(this.buscar)
-  }
 
-  )
-}
+  },
+  computed: {
+    libros_filtrados() {
+      return this.libros.filter(libro => {
+          return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) || libro.TITULO.includes(this.buscar) || libro.AUTOR.includes(this.buscar)
+        }
+
+      )
+    }
   }
 }
 </script>
