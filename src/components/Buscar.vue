@@ -21,7 +21,7 @@
           <td>{{libro.CLASIFICACION}}</td>
           <td>
             <div class="radio_boton">
-              <label class="checkbox-inline"><input type="radio" :value="libro.CLASIFICACION" v-model="checado" @change="agregar()" selected=""></label>
+              <label class="checkbox-inline"><input type="radio" :value="libro.CLASIFICACION" v-model="checado" @change="agregar( $event)" selected=""></label>
 
 
             </div>
@@ -34,7 +34,7 @@
     <div class="libros_prestados"  v-if="checke">
       <ul v-for="(radie,index) in radio" id="lista">
         <li>{{radie}}
-        <button type="button" class="botoncito" v-if="checke" @click="quitar(index)" v-model="libro_borrar" :value="radie">Quitar</button>
+        <button type="button" class="botoncito" v-if="checke" @click="quitar(index, $event)">Quitar</button>
 </li>
       </ul>
     </div>
@@ -70,7 +70,9 @@ export default {
     }
   },
   methods: {
-    agregar: function() {
+    agregar: function(e) {
+      e.preventDefault();
+      e.stopPropagation();
       if(this.radio.length<3){
         if(!this.radio.includes(this.checado)){
       this.radio.push(this.checado)
@@ -86,7 +88,10 @@ export default {
     }
 
   },
-  quitar:function(key){
+  quitar:function(key,e){
+    e.preventDefault();
+    e.stopPropagation();
+
     this.radio.splice(key,1);
   }
 
