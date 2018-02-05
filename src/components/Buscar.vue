@@ -30,7 +30,7 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn btn-success" v-if="checke">Prestar</button>
+    <button type="button" class="btn btn-success" v-if="checke" @click="prestar">Prestamo</button>
     <div class="libros_prestados"  v-if="checke">
       <ul v-for="(radie,index) in radio" id="lista">
         <li>{{radie}}
@@ -50,6 +50,10 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref = db.ref('libros');
+ref.once('value')
+ .then(function (snap) {
+ console.log(snap.val());
+ });
 export default {
   firebase: {
     libros: ref
@@ -89,6 +93,10 @@ export default {
     e.stopPropagation();
 
     this.radio.splice(key,1);
+  },
+  prestar:function(){
+    this.$router.replace('prestamo')
+
   }
 
   },
