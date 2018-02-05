@@ -21,7 +21,8 @@
           <td>{{libro.CLASIFICACION}}</td>
           <td>
             <div class="radio_boton">
-              <label class="checkbox-inline"><input type="radio" :value="libro.ID" v-model="checado" @change="agregar()" selected=""></label>
+              <label class="checkbox-inline"><input type="radio" :value="libro.CLASIFICACION" v-model="checado" @change="agregar()" selected=""></label>
+
 
             </div>
           </td>
@@ -30,7 +31,13 @@
       </tbody>
     </table>
     <button type="button" class="btn btn-success" v-if="checke">Prestar</button>
-
+    <div class="libros_prestados"  v-if="checke">
+      <ul v-for="radie in radio" id="lista">
+        <li>{{radie}}
+        <button type="button" class="botoncito" v-if="checke">Quitar</button>
+</li>
+      </ul>
+    </div>
   </div>
   </div>
 
@@ -43,7 +50,6 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref = db.ref('libros');
-var radio = [];
 export default {
   firebase: {
     libros: ref
@@ -54,13 +60,15 @@ export default {
       titulo: '',
       buscar: "",
       checado:"",
-      checke:false
+      checke:false,
+      radio :[]
+
     }
   },
   methods: {
     agregar: function() {
-      if(radio.length<3){
-      radio.push(this.checado)
+      if(this.radio.length<3){
+      this.radio.push(this.checado)
       console.log(this.checado);
       this.checke=true;
       alert(radio)
@@ -133,5 +141,24 @@ th{
   text-align: center;
   color: white;
 }
-
+.libros_prestados{
+  border-style: dotted;
+  position: relative;
+    top: 100px;
+    width: 40%;
+    height: 40%;
+    font-size: 10px;
+}
+#lista{
+  position: relative;
+  top: 0px;
+  left: -40px;
+}
+.botoncito{
+  float: right;
+  position: relative;
+  top: 0px;
+  color: white;
+  background-color: black;
+}
 </style>
