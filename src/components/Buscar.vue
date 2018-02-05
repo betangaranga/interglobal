@@ -68,9 +68,14 @@ export default {
   methods: {
     agregar: function() {
       if(this.radio.length<3){
+        if(!this.radio.includes(this.checado)){
       this.radio.push(this.checado)
       console.log(this.checado);
       this.checke=true;
+    }
+    else{
+      alert("Este libro ya lo agregaste")
+    }
     }
     else{
       alert("Estas pendejo")
