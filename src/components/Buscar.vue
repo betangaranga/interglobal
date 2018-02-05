@@ -21,7 +21,8 @@
           <td>{{libro.CLASIFICACION}}</td>
           <td>
             <div class="radio_boton">
-              <label class="checkbox-inline"><input type="radio" :value="libro.ID" v-model="checado" @change="agregar();" checked=""></label>
+              <label class="checkbox-inline"><input type="radio" :value="libro.CLASIFICACION" v-model="checado" @change="agregar()" selected=""></label>
+
 
             </div>
           </td>
@@ -29,13 +30,18 @@
         </tr>
       </tbody>
     </table>
+    <button type="button" class="btn btn-success" v-if="checke">Prestar</button>
+    <div class="libros_prestados"  v-if="checke">
+      <ul v-for="(radie,index) in radio" id="lista">
+        <li>{{radie}}
+        <button type="button" class="botoncito" v-if="checke" @click="quitar(index)" v-model="libro_borrar" :value="radie">Quitar</button>
+</li>
+      </ul>
+    </div>
+  </div>
   </div>
 
-  </div>
 
-  </div>
-
-</div>
 
 </template>
 
@@ -56,24 +62,43 @@ export default {
   data() {
     return {
       titulo: '',
-      buscar:""
+      buscar: "",
+      checado:"",
+      checke:false,
+      radio :[]
+
     }
   },
-  methods:{
-    agregar:function(){
-
+  methods: {
+    agregar: function() {
+      if(this.radio.length<3){
+        if(!this.radio.includes(this.checado)){
+      this.radio.push(this.checado)
       console.log(this.checado);
-
+      this.checke=true;
     }
+    else{
+      alert("Este libro ya lo agregaste")
+    }
+    }
+    else{
+      alert("Estas pendejo")
+    }
+
   },
-  computed :{
-libros_filtrados(){
-  return this.libros.filter(libro => {
-    return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) ||  libro.TITULO.includes(this.buscar) ||  libro.AUTOR.includes(this.buscar)
+  quitar:function(key){
+    this.radio.splice(key,1);
   }
 
-  )
-}
+  },
+  computed: {
+    libros_filtrados() {
+      return this.libros.filter(libro => {
+          return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) || libro.TITULO.includes(this.buscar) || libro.AUTOR.includes(this.buscar)
+        }
+
+      )
+    }
   }
 }
 </script>
@@ -100,9 +125,12 @@ grid-row: 1/2;
   grid-row: 2/-1;
   margin-left: auto;
   margin-right: auto;
-
+border-style: dotted;
 }
-
+.btn {
+  position: relative;
+  top: 170px;
+}
 table{
  height:100px;
  display: -moz-groupbox;
@@ -124,5 +152,24 @@ th{
   text-align: center;
   color: white;
 }
-
+.libros_prestados{
+  border-style: dotted;
+  position: relative;
+    top: 100px;
+    width: 40%;
+    height: 40%;
+    font-size: 10px;
+}
+#lista{
+  position: relative;
+  top: 0px;
+  left: -40px;
+}
+.botoncito{
+  float: right;
+  position: relative;
+  top: 0px;
+  color: white;
+  background-color: black;
+}
 </style>
