@@ -32,9 +32,9 @@
     </table>
     <button type="button" class="btn btn-success" v-if="checke">Prestar</button>
     <div class="libros_prestados"  v-if="checke">
-      <ul v-for="radie in radio" id="lista">
+      <ul v-for="(radie,index) in radio" id="lista">
         <li>{{radie}}
-        <button type="button" class="botoncito" v-if="checke">Quitar</button>
+        <button type="button" class="botoncito" v-if="checke" @click="quitar(index)" v-model="libro_borrar" :value="radie">Quitar</button>
 </li>
       </ul>
     </div>
@@ -71,13 +71,15 @@ export default {
       this.radio.push(this.checado)
       console.log(this.checado);
       this.checke=true;
-      alert(radio)
     }
     else{
       alert("Estas pendejo")
     }
 
-    }
+  },
+  quitar:function(key){
+    this.radio.splice(key,1);
+  }
 
   },
   computed: {
