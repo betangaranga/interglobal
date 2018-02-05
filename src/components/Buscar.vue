@@ -50,10 +50,17 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref = db.ref('libros');
-ref.once('value')
- .then(function (snap) {
- console.log(snap.val());
- });
+  ref.once('value')
+    .then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+      // key will be "ada" the first time and "alan" the second time
+      var key = childSnapshot.key;
+      // childData will be the actual contents of the child
+      var childData = childSnapshot.val();
+      console.log(childData.AUTOR);
+  });
+
+      });
 export default {
   firebase: {
     libros: ref
@@ -63,9 +70,9 @@ export default {
     return {
       titulo: '',
       buscar: "",
-      checado:"",
-      checke:false,
-      radio :[]
+      checado: "",
+      checke: false,
+      radio: []
 
     }
   },
@@ -73,31 +80,29 @@ export default {
     agregar: function(e) {
       e.preventDefault();
       e.stopPropagation();
-      if(this.radio.length<3){
-        if(!this.radio.includes(this.checado)){
-      this.radio.push(this.checado)
-      console.log(this.checado);
-      this.checke=true;
-    }
-    else{
-      alert("Este libro ya lo agregaste")
-    }
-    }
-    else{
-      alert("Estas pendejo")
-    }
+      if (this.radio.length < 3) {
+        if (!this.radio.includes(this.checado)) {
+          this.radio.push(this.checado)
+          console.log(this.checado);
+          this.checke = true;
+        } else {
+          alert("Este libro ya lo agregaste")
+        }
+      } else {
+        alert("Estas pendejo")
+      }
 
-  },
-  quitar:function(key,e){
-    e.preventDefault();
-    e.stopPropagation();
+    },
+    quitar: function(key, e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-    this.radio.splice(key,1);
-  },
-  prestar:function(){
-    this.$router.replace('prestamo')
+      this.radio.splice(key, 1);
+    },
+    prestar: function() {
+      this.$router.replace('prestamo')
 
-  }
+    }
 
   },
   computed: {
