@@ -69,12 +69,11 @@ var json = {
            "TEMA2":childData.TEMA2
       })
   });
+  var json_local=JSON.stringify(json.libros);
+  localStorage.setItem("testJSON", json_local);
 
       });
 export default {
-  firebase: {
-    libros: ref
-  },
   name: 'buscar',
   data() {
     return {
@@ -83,7 +82,8 @@ export default {
       checado: "",
       checke: false,
       radio: [],
-      libros_local:json.libros
+      libros_local: JSON.parse(localStorage.getItem("testJSON"))
+
 
     }
   },
