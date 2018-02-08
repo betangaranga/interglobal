@@ -50,6 +50,9 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref = db.ref('libros');
+var json = {
+    libros: []
+};
   ref.once('value')
     .then(function(snapshot) {
       snapshot.forEach(function(childSnapshot) {
@@ -57,7 +60,14 @@ var ref = db.ref('libros');
       var key = childSnapshot.key;
       // childData will be the actual contents of the child
       var childData = childSnapshot.val();
-      console.log(childData.AUTOR);
+      json.libros.push({
+        "ID":childData.ID ,
+         "CLASIFICACION":childData.CLASIFICACION ,
+         "AUTOR":childData.AUTOR,
+          "TITULO":childData.TITULO,
+          "TEMA1": childData.TEMA1,
+           "TEMA2":childData.TEMA2
+      })
   });
 
       });
@@ -72,7 +82,8 @@ export default {
       buscar: "",
       checado: "",
       checke: false,
-      radio: []
+      radio: [],
+      libros_local:json.libros
 
     }
   },
@@ -107,7 +118,7 @@ export default {
   },
   computed: {
     libros_filtrados() {
-      return this.libros.filter(libro => {
+      return this.libros_local.filter(libro => {
           return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) || libro.TITULO.includes(this.buscar) || libro.AUTOR.includes(this.buscar)
         }
 
