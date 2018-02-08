@@ -28,7 +28,7 @@
         </tr>
       </tbody>
     </table>
-    <button type="button" class="btn btn-success" v-if="checke">Prestar</button>
+    <button type="button" class="btn btn-success" v-if="checke" @click="prestar">Prestamo</button>
     <div class="libros_prestados"  v-if="checke">
       <ul v-for="(radie,index) in radio" id="lista">
         <li>{{radie}}
@@ -49,21 +49,38 @@ import firebase from 'firebase'
 var db = firebase.database();
 
 var ref = db.ref('libros');
-var ref2 = db.ref('alumnos');
-export default {
-  firebase: {
-    libros: ref,
-    alumnos: ref2
-  },
+var json = {
+    libros: []
+};
+  ref.once('value')
+    .then(function(snapshot) {
+      snapshot.forEach(function(childSnapshot) {
+      var key = childSnapshot.key;
+      var childData = childSnapshot.val();
+      json.libros.push({
+        "ID":childData.ID ,
+         "CLASIFICACION":childData.CLASIFICACION ,
+         "AUTOR":childData.AUTOR,
+          "TITULO":childData.TITULO,
+          "TEMA1": childData.TEMA1,
+           "TEMA2":childData.TEMA2
+      })
+  });
+  var json_local=JSON.stringify(json.libros);
+  localStorage.setItem("testJSON", json_local);
 
+      });
+export default {
   name: 'buscar',
   data() {
     return {
       //titulo: '',
       buscar: "",
-      checado:"",
-      checke:false,
-      radio :[]
+      checado: "",
+      checke: false,
+      radio: [],
+      libros_local: JSON.parse(localStorage.getItem("testJSON"))
+
 
     }
   },
@@ -71,32 +88,34 @@ export default {
     agregar: function(e) {
       e.preventDefault();
       e.stopPropagation();
-      if(this.radio.length<3){
-        if(!this.radio.includes(this.checado)){
-      this.radio.push(this.checado)
-      console.log(this.checado);
-      this.checke=true;
-    }
-    else{
-      alert("Este libro ya lo agregaste")
-    }
-    }
-    else{
-      alert("Estas pendejo")
-    }
+      if (this.radio.length < 3) {
+        if (!this.radio.includes(this.checado)) {
+          this.radio.push(this.checado)
+          console.log(this.checado);
+          this.checke = true;
+        } else {
+          alert("Este libro ya lo agregaste")
+        }
+      } else {
+        alert("Estas pendejo")
+      }
 
-  },
-  quitar:function(key,e){
-    e.preventDefault();
-    e.stopPropagation();
+    },
+    quitar: function(key, e) {
+      e.preventDefault();
+      e.stopPropagation();
 
-    this.radio.splice(key,1);
-  }
+      this.radio.splice(key, 1);
+    },
+    prestar: function() {
+      this.$router.replace('prestamo')
+
+    }
 
   },
   computed: {
     libros_filtrados() {
-      return this.libros.filter(libro => {
+      return this.libros_local.filter(libro => {
           return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) || libro.TITULO.includes(this.buscar) || libro.AUTOR.includes(this.buscar)
         }
 
