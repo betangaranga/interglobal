@@ -22,8 +22,6 @@
           <td>
             <div class="radio_boton">
               <label class="checkbox-inline"><input type="radio" :value="libro.CLASIFICACION" v-model="checado" @change="agregar( $event)" selected=""></label>
-
-
             </div>
           </td>
 
@@ -49,6 +47,7 @@
 import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
+
 var ref = db.ref('libros');
 var json = {
     libros: []
@@ -75,7 +74,7 @@ export default {
   name: 'buscar',
   data() {
     return {
-      titulo: '',
+      //titulo: '',
       buscar: "",
       checado: "",
       checke: false,

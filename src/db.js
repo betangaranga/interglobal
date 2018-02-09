@@ -7,6 +7,8 @@ var config = {
     storageBucket: "mi-proyecto-vue.appspot.com",
     messagingSenderId: "568169758636"
   };
+
+
   const firebaseApp=firebase.initializeApp(config);
   const db = firebaseApp.database();
 

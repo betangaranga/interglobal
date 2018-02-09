@@ -1,16 +1,26 @@
-<template lang="html">
-<div class="container">
-  AQUI VA EL PRESTAMO CHIDO
-</div>
+<template>
+    <div class="page1">
+        <h1>{{ msg }}</h1>
+    </div>
 </template>
 
 <script>
-export default {
-}
+    export default {
+        name: 'Prestamo',
+        data () {
+            return {
+                msg: 'ESTO SE ACTUALIZA DEPENDIENDO DE LA OPCIONffffffffff'
+            }
+        }
+    }
 </script>
 
-<style lang="css">
-.container{
-  border-style: dotted;
-}
+<style scoped>
+    h1, h2 {
+        font-weight: normal;
+    }
+
+    a {
+        color: #42b983;
+    }
 </style>
