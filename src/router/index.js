@@ -37,7 +37,7 @@ let router = new Router({
         {
         path: "Prestamo",
         component: Prestamo
-      }
+      },
       {
         path:"Buscar",
         component:Buscar,
