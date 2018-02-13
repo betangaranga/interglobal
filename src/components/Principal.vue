@@ -3,21 +3,13 @@
 
     <div class="menu">
 <ul>
-<<<<<<< HEAD
-<li>
-         <router-link to="/principal/Prestamo">Realizar Prestamo</router-link>
+  <li>
+    <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
 </li>
          <li><router-link to="/principal/devolucion">Devolucion</router-link>
-=======
-         <li>
-           <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
+         </li>
 
->>>>>>> d1dbd12f932056edab1d797852bb1a27d3d88974
-</li>
 
-<li>
-  <p><router-link to="/principal/Devolucion">Devolucion</router-link></p>
-</li>
 
 <li>
 <a href="#" v-on:click="logout">Salir</a>
