@@ -5,11 +5,16 @@
 </template>
 
 <script>
+import { EventBus } from '../event-bus.js';
+var arr=[];
+EventBus.$on('enviado', radio => {
+  arr=radio;
+});
     export default {
         name: 'Prestamo',
         data () {
             return {
-                msg: 'ESTO SE ACTUALIZA DEPENDIENDO DE LA OPCIONffffffffff'
+                msg: arr
             }
         }
     }
