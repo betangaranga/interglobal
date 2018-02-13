@@ -7,9 +7,11 @@
            <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
 
 </li>
+
 <li>
-  <p><router-link to="/principal/devolucion">Devolucion</router-link></p>
+  <p><router-link to="/principal/Devolucion">Devolucion</router-link></p>
 </li>
+
 <li>
 <a href="#" v-on:click="logout">Salir</a>
 </li>
@@ -47,6 +49,7 @@ export default {
       var self = this
       //moment.locale('es')
       this.datenow = moment().format('D MM YYYY, h:mm:ss a')
+      window.moment = require('moment');
 
       setInterval(self.time, 1000)
     }
