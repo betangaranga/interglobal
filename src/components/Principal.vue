@@ -12,7 +12,7 @@
 
 
 <li>
-<a href="#" v-on:click="logout">Salir</a>
+<p v-on:click="logout">Salir</p>
 </li>
 </ul>
 
