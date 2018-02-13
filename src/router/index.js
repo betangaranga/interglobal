@@ -8,6 +8,7 @@ import Prestamo from '@/components/Prestamo'
 import Devolucion from '@/components/Devolucion'
 import firebase from 'firebase'
 
+
 Vue.use(Router)
 
 let router = new Router({
@@ -32,15 +33,16 @@ let router = new Router({
         requiresAuth: true
       },
       children: [
+
+        {
+        path: "Prestamo",
+        component: Prestamo
+      },
       {
         path:"Buscar",
         component:Buscar,
 
       },
-      {
-      path:"Prestamo",
-      component:Prestamo
-    },
     {
       path: "Devolucion",
       component: Devolucion

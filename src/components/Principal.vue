@@ -3,17 +3,16 @@
 
     <div class="menu">
 <ul>
-         <li>
-           <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
-
+  <li>
+    <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
 </li>
+         <li><router-link to="/principal/devolucion">Devolucion</router-link>
+         </li>
+
+
 
 <li>
-  <p><router-link to="/principal/Devolucion">Devolucion</router-link></p>
-</li>
-
-<li>
-<a href="#" v-on:click="logout">Salir</a>
+<p v-on:click="logout">Salir</p>
 </li>
 </ul>
 

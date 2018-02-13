@@ -46,6 +46,7 @@
 <script>
 import '../db'
 import firebase from 'firebase'
+import { EventBus } from '../event-bus.js';
 var db = firebase.database();
 
 var ref = db.ref('libros');
@@ -108,6 +109,7 @@ export default {
       this.radio.splice(key, 1);
     },
     prestar: function() {
+      EventBus.$emit('enviado', this.radio);
       this.$router.replace('prestamo')
 
     }
