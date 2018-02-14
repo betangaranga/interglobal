@@ -4,7 +4,6 @@
 <div class="container">
   <div class="form-group">
     <input type="text" v-model="buscarm" id="prest" placeholder="Busca por matrícula" name="" value="" class="form-control">
-    <button type="button" name="button" @click='ber'>hola</button>
   </div>
 
   <div class="panel-body">
@@ -20,11 +19,11 @@
       </thead>
       <tbody>
         <tr v-for="alumno in alumnos_mat">
-          <td>{{alumno.IDL}}</td>
-          <td>{{alumno.MAT}}</td>
-          <td>{{alumno.NOMB}}</td>
-          <td>{{alumno.FECHAS}}</td>
-          <td>{{alumno.FECHAE}}</td>
+          <td>{{alumno.idl}}</td>
+          <td>{{alumno.mat}}</td>
+          <td>{{alumno.nomb}}</td>
+          <td>{{alumno.fechas}}</td>
+          <td>{{alumno.fechae}}</td>
         </tr>
 
       </tbody>
@@ -42,36 +41,7 @@
 import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
-
 var ref1 = db.ref('prestamos');
-var json1 = {
-  prestamos: []
-};
-ref1.once('value').then(function(snapshot)
-{
-  snapshot.forEach(function(childSnapshot){
-    var key = childSnapshot.key;
-    var childData = childSnapshot.val();
-    json1.prestamos.push(
-      {
-        "IDL": childData.idl,
-        "MAT": childData.mat,
-        "NOMB": childData.nomb,
-        "FECHAS": childData.fechas,
-        "FECHAE": childData.fechae
-      }
-                      )
-  }
-
-
-);
-  console.log(json1);
-var json_local2=JSON.stringify(json1.prestamos);
-localStorage.setItem("testJSON2", json_local2);
-}
-);
-
-
 export default {
   firebase:{
     prestamos: ref1
@@ -80,18 +50,13 @@ export default {
 
   data(){
     return{
-      buscarm:"",
-      prestamos_local2: JSON.parse(localStorage.getItem("testJSON2"))
-    }
-  },
-  methods:{
-    ber:function(){  console.log(JSON.stringify(json1.prestamos));
-    }
+      buscarm:""
+        }
   },
   computed:{
     alumnos_mat(){
 
-      return this.prestamos_local2.filter(alumno => {return alumno.MAT.toString().includes(this.buscarm)})
+      return this.prestamos.filter(alumno => {return alumno.mat.toString().includes(this.buscarm)})
                  }
 
            }

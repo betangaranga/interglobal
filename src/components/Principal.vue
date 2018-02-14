@@ -47,7 +47,7 @@ export default {
     time() {
       var self = this
       //moment.locale('es')
-      this.datenow = moment().format('D MM YYYY, h:mm:ss a')
+      this.datenow = moment().format();
       window.moment = require('moment');
 
       setInterval(self.time, 1000)
