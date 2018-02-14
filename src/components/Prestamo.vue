@@ -40,8 +40,13 @@ export default {
   },
   methods: {
     prestar: function() {
-      if (this.alumnos.some(item => item.MATRICULA.toString() === this.buscar)) {
-        for (var i = 0; i < arr.length; i++) {
+      var boleta=this.buscar;
+      if (this.alumnos.some(item => item.MATRICULA.toString() === boleta)) {
+        var index = this.alumnos.findIndex(function(item, i){
+          return item.MATRICULA.toString() === boleta
+        });
+        console.log(index);
+          for (var i = 0; i < arr.length; i++) {
           ref_prestamos.push({
             //AQUI VAN LAS FECHAS::::::
             "fechae": 4555,
@@ -50,7 +55,13 @@ export default {
             "mat": this.buscar,
             "nomb": "puto"
           })
+          //AÑADO UN PRESTAMO:
+          this.alumnos[index].PRESTAMOS= this.alumnos[index].PRESTAMOS+1;
+          //db.ref("alumnos/"+index.toString()).update({ PRESTAMOS:prest });
+
         }
+        db.ref("alumnos/"+index+"/PRESTAMOS").set( this.alumnos[index].PRESTAMOS);
+
         alert("Agregado con exito")
 
       } else {
