@@ -40,29 +40,37 @@ export default {
   },
   methods: {
     prestar: function() {
-      var boleta=this.buscar;
+      var boleta = this.buscar;
+      var flag = 0;
       if (this.alumnos.some(item => item.MATRICULA.toString() === boleta)) {
-        var index = this.alumnos.findIndex(function(item, i){
+        var index = this.alumnos.findIndex(function(item, i) {
           return item.MATRICULA.toString() === boleta
         });
         console.log(index);
-          for (var i = 0; i < arr.length; i++) {
-          ref_prestamos.push({
-            //AQUI VAN LAS FECHAS::::::
-            "fechae": moment().add(7, 'days').calendar(),
-            "fechas": moment().format('l'),
-            "idl": arr[i],
-            "mat": this.buscar,
-            "nomb": "puto"
-          })
-          //AÑADO UN PRESTAMO:
-          this.alumnos[index].PRESTAMOS= this.alumnos[index].PRESTAMOS+1;
-          //db.ref("alumnos/"+index.toString()).update({ PRESTAMOS:prest });
-
+        for (var i = 0; i < arr.length; i++) {
+          if (this.alumnos[index].PRESTAMOS < 3) {
+            ref_prestamos.push({
+              //AQUI VAN LAS FECHAS::::::
+              "fechae": moment().add(7, 'days').calendar(),
+              "fechas": moment().format('l'),
+              "idl": arr[i],
+              "mat": this.buscar,
+              "nomb": "puto"
+            })
+            //AÑADO UN PRESTAMO:
+            this.alumnos[index].PRESTAMOS = this.alumnos[index].PRESTAMOS + 1;
+            //db.ref("alumnos/"+index.toString()).update({ PRESTAMOS:prest });
+            flag = 1;
+          } else {
+            alert("Alcanzaste el tope de prestamos")
+            break;
+          }
         }
-        db.ref("alumnos/"+index+"/PRESTAMOS").set( this.alumnos[index].PRESTAMOS);
+        if (flag == 1) {
+          db.ref("alumnos/" + index + "/PRESTAMOS").set(this.alumnos[index].PRESTAMOS);
 
-        alert("Agregado con exito")
+          alert("Agregado con exito")
+        }
 
       } else {
         alert("No existe la boleta")
