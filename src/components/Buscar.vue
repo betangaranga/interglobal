@@ -46,32 +46,38 @@
 <script>
 import '../db'
 import firebase from 'firebase'
-import { EventBus } from '../event-bus.js';
+import {
+  EventBus
+} from '../event-bus.js';
 var db = firebase.database();
 
 var ref = db.ref('libros');
+var ref_prestamo = db.ref('prestamos');
 var json = {
-    libros: []
+  libros: []
 };
-  ref.once('value')
-    .then(function(snapshot) {
-      snapshot.forEach(function(childSnapshot) {
+ref.once('value')
+  .then(function(snapshot) {
+    snapshot.forEach(function(childSnapshot) {
       var key = childSnapshot.key;
       var childData = childSnapshot.val();
       json.libros.push({
-        "ID":childData.ID ,
-         "CLASIFICACION":childData.CLASIFICACION ,
-         "AUTOR":childData.AUTOR,
-          "TITULO":childData.TITULO,
-          "TEMA1": childData.TEMA1,
-           "TEMA2":childData.TEMA2
+        "ID": childData.ID,
+        "CLASIFICACION": childData.CLASIFICACION,
+        "AUTOR": childData.AUTOR,
+        "TITULO": childData.TITULO,
+        "TEMA1": childData.TEMA1,
+        "TEMA2": childData.TEMA2
       })
-  });
-  var json_local=JSON.stringify(json.libros);
-  localStorage.setItem("testJSON", json_local);
+    });
+    var json_local = JSON.stringify(json.libros);
+    localStorage.setItem("testJSON", json_local);
 
-      });
+  });
 export default {
+  firebase: {
+    prestamos: ref_prestamo
+  },
   name: 'buscar',
   data() {
     return {
@@ -90,15 +96,23 @@ export default {
       e.preventDefault();
       e.stopPropagation();
       if (this.radio.length < 3) {
-        if (!this.radio.includes(this.checado)) {
-          this.radio.push(this.checado)
-          console.log(this.checado);
-          this.checke = true;
-        } else {
-          alert("Este libro ya lo agregaste")
+        if (!this.prestamos.some(item => item.idl===this.checado)) {
+          if (!this.radio.includes(this.checado)) {
+            this.radio.push(this.checado)
+            console.log(this.checado);
+            this.checke = true;
+          }
+          else {
+            alert("Este libro ya lo agregaste")
+          }
         }
-      } else {
-        alert("Estas pendejo")
+        else {
+          alert("Libro ya prestado")
+        }
+      }
+      else{
+        alert("Ya tienes3")
+
       }
 
     },
