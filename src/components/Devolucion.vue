@@ -5,7 +5,9 @@
   <div class="form-group">
     <input type="text" v-model="buscarm" id="prest" placeholder="Busca por matrícula" name="" value="" class="form-control">
   </div>
-
+<div class="">
+  <button type="button" @click= "cambiarf">hola</button>
+</div>
   <div class="panel-body">
     <table class="table">
       <thead>
@@ -52,6 +54,14 @@ export default {
     return{
       buscarm:""
         }
+  },
+  methods:{
+    cambiarf: function(e){
+      var timee = moment().format('l');
+      alumno.fechas = moment().format('l');
+      console.log(timee);
+
+    }
   },
   computed:{
     alumnos_mat(){

@@ -69,9 +69,11 @@ ref.once('value')
         "TEMA1": childData.TEMA1,
         "TEMA2": childData.TEMA2
       })
-    });
-    var json_local = JSON.stringify(json.libros);
-    localStorage.setItem("testJSON", json_local);
+  });
+  var json_local=JSON.stringify(json.libros);
+  var upper = json_local.toUpperCase();
+  localStorage.setItem("testJSON", upper);
+
 
   });
 export default {
@@ -127,9 +129,12 @@ export default {
 
   },
   computed: {
+
     libros_filtrados() {
+      var upperbus = this.buscar.toUpperCase();
+
       return this.libros_local.filter(libro => {
-          return libro.TEMA1.includes(this.buscar) || libro.TEMA2.includes(this.buscar) || libro.TITULO.includes(this.buscar) || libro.AUTOR.includes(this.buscar)
+          return libro.TEMA1.includes(upperbus) || libro.TEMA2.includes(upperbus) || libro.TITULO.includes(upperbus) || libro.AUTOR.includes(upperbus)
         }
 
       )
