@@ -44,8 +44,8 @@ export default {
         for (var i = 0; i < arr.length; i++) {
           ref_prestamos.push({
             //AQUI VAN LAS FECHAS::::::
-            "fechae": 4555,
-            "fechas": 6667,
+            "fechae": moment().add(7, 'days').calendar(),
+            "fechas": moment().format('l'),
             "idl": arr[i],
             "mat": this.buscar,
             "nomb": "puto"
