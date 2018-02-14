@@ -43,6 +43,7 @@ export default {
       if (this.alumnos.some(item => item.MATRICULA.toString() === this.buscar)) {
         for (var i = 0; i < arr.length; i++) {
           ref_prestamos.push({
+            //AQUI VAN LAS FECHAS::::::
             "fechae": 4555,
             "fechas": 6667,
             "idl": arr[i],
