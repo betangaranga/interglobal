@@ -96,21 +96,18 @@ export default {
       e.preventDefault();
       e.stopPropagation();
       if (this.radio.length < 3) {
-        if (!this.prestamos.some(item => item.idl===this.checado)) {
+        if (!this.prestamos.some(item => item.idl === this.checado)) {
           if (!this.radio.includes(this.checado)) {
             this.radio.push(this.checado)
             console.log(this.checado);
             this.checke = true;
-          }
-          else {
+          } else {
             alert("Este libro ya lo agregaste")
           }
-        }
-        else {
+        } else {
           alert("Libro ya prestado")
         }
-      }
-      else{
+      } else {
         alert("Ya tienes3")
 
       }

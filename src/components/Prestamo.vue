@@ -21,15 +21,16 @@ import {
 } from '../event-bus.js';
 var db = firebase.database();
 var ref_libros = db.ref('libros');
-var ref_alumnos = db.ref('prestamos');
+var ref_prestamos = db.ref('prestamos');
+var ref_alumnos = db.ref('alumnos');
 var arr = [];
-var prestamo=[
-  {}
-];
 EventBus.$on('enviado', radio => {
   arr = radio;
 });
 export default {
+  firebase: {
+    alumnos: ref_alumnos
+  },
   name: 'Prestamo',
   data() {
     return {
@@ -39,14 +40,20 @@ export default {
   },
   methods: {
     prestar: function() {
-      for (var i = 0; i < arr.length; i++) {
-ref_alumnos.push({
-  "fechae":4555,
-  "fechas":6667,
-  "idl":arr[i],
-  "mat":this.buscar,
-  "nomb":"puto"
-})
+      if (this.alumnos.some(item => item.MATRICULA.toString() === this.buscar)) {
+        for (var i = 0; i < arr.length; i++) {
+          ref_prestamos.push({
+            "fechae": 4555,
+            "fechas": 6667,
+            "idl": arr[i],
+            "mat": this.buscar,
+            "nomb": "puto"
+          })
+        }
+        alert("Agregado con exito")
+
+      } else {
+        alert("No existe la boleta")
       }
 
     }
