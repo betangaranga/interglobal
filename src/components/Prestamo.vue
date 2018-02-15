@@ -29,7 +29,8 @@ EventBus.$on('enviado', radio => {
 });
 export default {
   firebase: {
-    alumnos: ref_alumnos
+    alumnos: ref_alumnos,
+    libros:ref_libros
   },
   name: 'Prestamo',
   data() {
@@ -57,6 +58,12 @@ export default {
               "mat": this.buscar,
               "nomb": "puto"
             })
+              var index_libro = this.libros.findIndex(function(item, i) {
+                return item.CLASIFICACION.toUpperCase() === arr[i]
+              });
+              db.ref("libros/" + index_libro + "/DISPONIBILIDAD").set(0);
+
+
             //AÑADO UN PRESTAMO:
             this.alumnos[index].PRESTAMOS = this.alumnos[index].PRESTAMOS + 1;
             //db.ref("alumnos/"+index.toString()).update({ PRESTAMOS:prest });
@@ -68,8 +75,8 @@ export default {
         }
         if (flag == 1) {
           db.ref("alumnos/" + index + "/PRESTAMOS").set(this.alumnos[index].PRESTAMOS);
+          //db.ref("libros/" + index_libro + "/DISPONIBILIDAD").set(0);
 
-          alert("Agregado con exito")
         }
 
       } else {
