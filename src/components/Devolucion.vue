@@ -52,7 +52,8 @@ export default {
 
   data(){
     return{
-      buscarm:""
+      buscarm:"",
+      prest_a: []
         }
   },
   methods:{
@@ -67,7 +68,17 @@ export default {
     alumnos_mat(){
 
       return this.prestamos.filter(alumno => {return alumno.mat.toString().includes(this.buscarm)})
-                 }
+    },
+    prestamos_atrasados(){
+
+      var pa = moment(alumno.fechae, "YYYYMMDD").fromNow();
+      if(pa != NULL)
+      {
+          this.prest_a.push(pa);
+          console.log(this.prest_a);
+      }
+
+    }
 
            }
 
