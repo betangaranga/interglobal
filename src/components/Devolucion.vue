@@ -6,7 +6,7 @@
     <input type="text" v-model="buscarm" id="prest" placeholder="Busca por matrícula" name="" value="" class="form-control">
   </div>
 <div class="">
-  <button type="button" @click= "cambiarf">hola</button>
+  <button type="button" @click= "prestamos_atrasados">hola</button>
 </div>
   <div class="panel-body">
     <table class="table">
@@ -44,9 +44,11 @@ import '../db'
 import firebase from 'firebase'
 var db = firebase.database();
 var ref1 = db.ref('prestamos');
+
 export default {
   firebase:{
-    prestamos: ref1
+    prestamos: ref1,
+
   },
   name: 'buscarm',
 
@@ -59,24 +61,28 @@ export default {
   methods:{
     cambiarf: function(e){
       var timee = moment().format('l');
-      alumno.fechas = moment().format('l');
+      this.alumno.fechas = timee;
       console.log(timee);
 
-    }
+    },
+    prestamos_atrasados(){
+
+      var fe = this.prestamos.fechae;
+      console.log(fe);
+      var pa = moment(fe, "YYYY/MM/DD").fromNow();
+      console.log(pa);
+    /*  if(pa != NULL)
+      {
+          this.prest_a.push(pa);
+          console.log(this.prest_a);
+      }
+*/
   },
   computed:{
     alumnos_mat(){
 
       return this.prestamos.filter(alumno => {return alumno.mat.toString().includes(this.buscarm)})
-    },
-    prestamos_atrasados(){
-
-      var pa = moment(alumno.fechae, "YYYYMMDD").fromNow();
-      if(pa != NULL)
-      {
-          this.prest_a.push(pa);
-          console.log(this.prest_a);
-      }
+    }
 
     }
 
