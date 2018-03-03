@@ -3,17 +3,16 @@
 
     <div class="menu">
 <ul>
-<li>
-        <p><router-link to="/principal/Prestamo">Realizar Prestamo</router-link></p>
+  <li>
+    <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
 </li>
-         <li>
-           <p><router-link to="/principal/devolucion">Devolucion</router-link></p>
-</li>
+         <li><router-link to="/principal/devolucion">Devolucion</router-link>
+         </li>
+
+
+
 <li>
-  <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
-</li>
-<li>
-<a href="#" v-on:click="logout">Salir</a>
+<p v-on:click="logout">Salir</p>
 </li>
 </ul>
 
@@ -48,7 +47,8 @@ export default {
     time() {
       var self = this
       //moment.locale('es')
-      this.datenow = moment().format('D MM YYYY, h:mm:ss a')
+      this.datenow = moment().format();
+      window.moment = require('moment');
 
       setInterval(self.time, 1000)
     }
@@ -78,14 +78,16 @@ export default {
 
 }
 ul{
-  margin: auto;
+  position: relative;
 text-align: center;
 font-size: 20px;
 padding: 10px;
 list-style: none;
+top: -60px;
 }
 li >   p,a{
   margin-top:50px;
+  margin-bottom: 50px;
 font-style: normal;
 color: white;
 text-decoration: none;
@@ -95,6 +97,7 @@ text-decoration: none;
 .menu {
   grid-column: 1 / 3;
   grid-row: 1/-1;
+  border-style:
 
 }
 
