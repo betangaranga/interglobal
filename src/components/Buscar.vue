@@ -132,7 +132,6 @@ export default {
 
     libros_filtrados() {
       var upperbus = this.buscar.toUpperCase();
-
       return this.libros_local.filter(libro => {
           return libro.TEMA1.includes(upperbus) || libro.TEMA2.includes(upperbus) || libro.TITULO.includes(upperbus) || libro.AUTOR.includes(upperbus)
         }
