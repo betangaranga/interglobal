@@ -1,19 +1,18 @@
 <template lang="html">
   <div class="contenedor">
-    <div class="header">
-BIBLIOTECA INTERGLOBAL
-    </div>
+
     <div class="menu">
 <ul>
-<li>
-         <router-link to="/principal/Prestamo">Realizar Prestamo</router-link>
+  <li>
+    <p><router-link to="/principal/Buscar">Busqueda de Libro</router-link></p>
 </li>
          <li><router-link to="/principal/devolucion">Devolucion</router-link>
-</li>
-<li>         <router-link to="/principal/Buscar">Busqueda de Libro</router-link>
-</li>
+         </li>
+
+
+
 <li>
-<a href="#" v-on:click="logout">Salir</a>
+<p v-on:click="logout">Salir</p>
 </li>
 </ul>
 
@@ -23,19 +22,20 @@ BIBLIOTECA INTERGLOBAL
 
     </div>
     <div class="footer">
-AQUI VA LA HORA
+      <span>{{datenow}}</span>
     </div>
   </div>
 </template>
 
 <script>
 import firebase from 'firebase';
-
+import * as moment from 'moment';
 export default {
   name: 'principal',
   data() {
     return {
-      msg: 'Welcome to Your Vue.js App'
+      msg: 'Welcome to Your Vue.js App',
+      datenow:""
     }
   },
   methods: {
@@ -43,7 +43,18 @@ export default {
       firebase.auth().signOut().then(() => {
         this.$router.replace('login')
       })
+    },
+    time() {
+      var self = this
+      //moment.locale('es')
+      this.datenow = moment().format('D MM YYYY, h:mm:ss a')
+      window.moment = require('moment');
+
+      setInterval(self.time, 1000)
     }
+  },
+  mounted: function(){
+    this.time()
   }
 }
 </script>
@@ -67,42 +78,37 @@ export default {
 
 }
 ul{
-  margin: auto;
-  text-decoration: none;
-  list-style: none;
+  position: relative;
 text-align: center;
 font-size: 20px;
 padding: 10px;
+list-style: none;
+top: -60px;
 }
-li{
+li >   p,a{
   margin-top:50px;
-text-decoration: none;
+  margin-bottom: 50px;
 font-style: normal;
+color: white;
+text-decoration: none;
 }
 
-.header {
-    grid-column: 1 / -1;
-    border-style: dotted;
-
-}
 
 .menu {
-  grid-column: 1 / 4;
-  grid-row: 2/-1;
-  border-style: dotted;
+  grid-column: 1 / 3;
+  grid-row: 1/-1;
+  border-style:
 
 }
 
 .contenido {
-    grid-column: 4 / -1;
-    grid-row: 2/-1;
-    border-style: dotted;
+    grid-column: 3 / -1;
+    grid-row: 1/-1;
 
 }
 
 .footer {
     grid-column: 1 / -1;
-    border-style: dotted;
 
 }
 </style>

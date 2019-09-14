@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import '../db'
+
 import firebase from 'firebase'
 
 export default {
